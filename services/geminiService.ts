@@ -4,7 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 export async function analyzeWithGemini(data: any[]) {
   // Always use a named parameter for apiKey. 
   // Create a new GoogleGenAI instance right before the call to ensure current API key is used.
-  const ai = new GoogleGenAI({ apiKey: import.meta.envi.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const prompt = `
     Como un experto en análisis estadístico y teoría de inercia numérica para loterías (específicamente Chontico Día), 
