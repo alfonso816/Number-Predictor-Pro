@@ -2,10 +2,11 @@
 import React from 'react';
 import { 
   Info,
-  Database
+  Database,
+  TrendingUp
 } from 'lucide-react';
 import Hero from './components/Hero.tsx';
-import { TECH_DOCS } from './constants.tsx';
+import { TECH_DOCS, TRADING_PATTERNS } from './constants.tsx';
 
 const App: React.FC = () => {
   return (
@@ -81,7 +82,7 @@ const App: React.FC = () => {
         </section>
 
         {/* 3. SECCIÓN: INTERFAZ Y HERRAMIENTAS */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-b border-slate-900">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {TECH_DOCS.interfaz.map((doc, idx) => (
@@ -115,6 +116,39 @@ const App: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 4. NUEVA SECCIÓN: EJEMPLOS DE TENDENCIA (SOLICITADO) */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 bg-[#010816]">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-4">
+              Visual Intelligence
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Ejemplos de <span className="text-cyan-400">Tendencia Técnica</span></h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-sm leading-relaxed">
+              Modelos gráficos de comportamiento inercial aplicados a la detección de reversiones y continuaciones en la matriz numérica.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {TRADING_PATTERNS.map((pattern, idx) => (
+              <div key={idx} className="group p-6 rounded-3xl bg-slate-900/10 border border-slate-800 hover:border-cyan-500/40 transition-all hover:bg-slate-900/30 backdrop-blur-sm">
+                <div className="mb-4 text-xs font-black text-slate-600 uppercase tracking-[0.2em] flex items-center gap-2">
+                  <div className={`w-1.5 h-1.5 rounded-full ${idx < 3 ? 'bg-cyan-400' : 'bg-lime-400'}`} />
+                  Análisis Modelo 0{idx + 1}
+                </div>
+                <h3 className="text-lg font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
+                  {pattern.title}
+                </h3>
+                <div className="p-6 bg-slate-950/80 rounded-2xl border border-slate-900 mb-6 flex items-center justify-center min-h-[140px] shadow-inner">
+                  {pattern.svg(idx < 3 ? '#22d3ee' : '#a3e635')}
+                </div>
+                <p className="text-slate-400 text-xs leading-relaxed font-medium">
+                  {pattern.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
       </main>

@@ -26,6 +26,70 @@ export const COLORS = {
   purple: 'bg-fuchsia-500/40'
 };
 
+// Patrones visuales extraídos de la imagen de referencia
+export const TRADING_PATTERNS = [
+  {
+    title: "Double Top Pattern",
+    desc: "Dos picos en un nivel de resistencia similar. Indica una fuerte reversión bajista inminente.",
+    svg: (color: string) => (
+      <svg viewBox="0 0 100 60" className="w-full h-24">
+        <path d="M10 50 L30 15 L50 40 L70 15 L90 50" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="20" y1="15" x2="80" y2="15" stroke="white" strokeWidth="1" strokeDasharray="3" opacity="0.4" />
+      </svg>
+    )
+  },
+  {
+    title: "Triple Top Pattern",
+    desc: "Tres picos que fallan al romper la resistencia superior. Señal de agotamiento de la tendencia alcista.",
+    svg: (color: string) => (
+      <svg viewBox="0 0 100 60" className="w-full h-24">
+        <path d="M5 50 L20 15 L35 40 L50 15 L65 40 L80 15 L95 50" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
+        <line x1="15" y1="15" x2="85" y2="15" stroke="white" strokeWidth="1" strokeDasharray="3" opacity="0.4" />
+      </svg>
+    )
+  },
+  {
+    title: "Head and Shoulders",
+    desc: "Hombro-Cabeza-Hombro. El pico central es el más alto. El patrón más confiable de reversión estructural.",
+    svg: (color: string) => (
+      <svg viewBox="0 0 100 60" className="w-full h-24">
+        <path d="M10 50 L25 30 L40 45 L55 10 L70 45 L85 30 L95 50" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
+        <line x1="20" y1="45" x2="90" y2="45" stroke="white" strokeWidth="1" strokeDasharray="3" opacity="0.4" />
+      </svg>
+    )
+  },
+  {
+    title: "Double Bottom Pattern",
+    desc: "Formación en 'W'. El precio toca suelo dos veces. Indica acumulación para un rebote alcista.",
+    svg: (color: string) => (
+      <svg viewBox="0 0 100 60" className="w-full h-24">
+        <path d="M10 10 L30 45 L50 20 L70 45 L90 10" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
+        <line x1="20" y1="45" x2="80" y2="45" stroke="white" strokeWidth="1" strokeDasharray="3" opacity="0.4" />
+      </svg>
+    )
+  },
+  {
+    title: "Triple Bottom Pattern",
+    desc: "Tres suelos en un nivel impenetrable. El soporte es sólido y se espera una expansión alcista.",
+    svg: (color: string) => (
+      <svg viewBox="0 0 100 60" className="w-full h-24">
+        <path d="M5 10 L20 45 L35 20 L50 45 L65 20 L80 45 L95 10" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
+        <line x1="15" y1="45" x2="85" y2="45" stroke="white" strokeWidth="1" strokeDasharray="3" opacity="0.4" />
+      </svg>
+    )
+  },
+  {
+    title: "Inverse Head and Shoulders",
+    desc: "Inversión del patrón H&S en la base. Señal de rebote alcista extremadamente potente.",
+    svg: (color: string) => (
+      <svg viewBox="0 0 100 60" className="w-full h-24">
+        <path d="M10 10 L25 35 L40 15 L55 50 L70 15 L85 35 L95 10" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" />
+        <line x1="20" y1="15" x2="90" y2="15" stroke="white" strokeWidth="1" strokeDasharray="3" opacity="0.4" />
+      </svg>
+    )
+  }
+];
+
 export const TECH_DOCS = {
   tendencias: [
     {
