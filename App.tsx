@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Cpu, 
   ShieldCheck,
@@ -8,22 +9,57 @@ import {
   Upload,
   Image as ImageIcon,
   X,
-  CheckCircle2
+  CheckCircle2,
+  Clock
 } from 'lucide-react';
 import Hero from './components/Hero.tsx';
 import { TECH_DOCS } from './constants.tsx';
 
+// Constantes para persistencia
+const STORAGE_KEY = 'number_matrix_pro_assets';
+const EXPIRATION_TIME = 20 * 60 * 60 * 1000; // 20 horas en milisegundos
+
+interface StoredImage {
+  data: string;
+  timestamp: number;
+}
+
 const App: React.FC = () => {
   const [accessCode, setAccessCode] = useState('');
   const [isAuthorized, setIsAuthorized] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<StoredImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Cargar imágenes guardadas y limpiar expiradas al montar
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed: StoredImage[] = JSON.parse(saved);
+        const now = Date.now();
+        // Filtrar solo las que tienen menos de 20 horas
+        const validImages = parsed.filter(img => (now - img.timestamp) < EXPIRATION_TIME);
+        setImages(validImages);
+        // Actualizar storage si hubo limpieza
+        if (validImages.length !== parsed.length) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(validImages));
+        }
+      } catch (e) {
+        console.error("Error al cargar imágenes persistentes", e);
+      }
+    }
+    
+    // Verificar si ya estaba autorizado en esta sesión
+    const auth = sessionStorage.getItem('isAuthorized');
+    if (auth === 'true') setIsAuthorized(true);
+  }, []);
 
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const code = e.target.value;
     setAccessCode(code);
     if (code === '1964B') {
       setIsAuthorized(true);
+      sessionStorage.setItem('isAuthorized', 'true');
     }
   };
 
@@ -38,7 +74,16 @@ const App: React.FC = () => {
       if (file.type === 'image/jpeg' || file.type === 'image/jpg') {
         const reader = new FileReader();
         reader.onloadend = () => {
-          setImages(prev => [...prev, reader.result as string].slice(0, 4));
+          const newImg: StoredImage = {
+            data: reader.result as string,
+            timestamp: Date.now()
+          };
+          
+          setImages(prev => {
+            const updated = [...prev, newImg].slice(0, 4);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+            return updated;
+          });
         };
         reader.readAsDataURL(file);
       }
@@ -46,7 +91,11 @@ const App: React.FC = () => {
   };
 
   const removeImage = (index: number) => {
-    setImages(prev => prev.filter((_, i) => i !== index));
+    setImages(prev => {
+      const updated = prev.filter((_, i) => i !== index);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      return updated;
+    });
   };
 
   return (
@@ -191,13 +240,17 @@ const App: React.FC = () => {
                     Acceso Concedido
                   </div>
                   <h2 className="text-3xl md:text-4xl font-black text-white mb-2">Visor de <span className="text-cyan-400">Activos Gráficos</span></h2>
-                  <p className="text-slate-500 text-sm">Cargue hasta 4 capturas de análisis para visualización técnica permanente.</p>
+                  <p className="text-slate-500 text-sm">Cargue hasta 4 capturas. Los archivos se mantendrán por <b>20 horas</b> en su navegador.</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {images.map((img, idx) => (
                     <div key={idx} className="relative aspect-square rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/50 group">
-                      <img src={img} alt={`Análisis ${idx + 1}`} className="w-full h-full object-cover" />
+                      <img src={img.data} alt={`Análisis ${idx + 1}`} className="w-full h-full object-cover" />
+                      <div className="absolute bottom-2 left-2 bg-slate-950/80 px-2 py-1 rounded text-[8px] text-slate-400 flex items-center gap-1">
+                        <Clock className="w-2.5 h-2.5" />
+                        {new Date(img.timestamp).toLocaleTimeString()}
+                      </div>
                       <button 
                         onClick={() => removeImage(idx)}
                         className="absolute top-2 right-2 p-1.5 bg-rose-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
@@ -229,7 +282,7 @@ const App: React.FC = () => {
 
                 <div className="flex justify-center gap-8 pt-8 opacity-40">
                   <div className="flex items-center gap-2 text-[10px] text-white font-bold"><ImageIcon className="w-3.5 h-3.5 text-cyan-500" /> FORMATO JPEG</div>
-                  <div className="flex items-center gap-2 text-[10px] text-white font-bold"><Database className="w-3.5 h-3.5 text-cyan-500" /> LOCAL STORAGE</div>
+                  <div className="flex items-center gap-2 text-[10px] text-white font-bold"><Clock className="w-3.5 h-3.5 text-cyan-500" /> PERSISTENCIA 20H</div>
                   <div className="flex items-center gap-2 text-[10px] text-white font-bold"><ShieldCheck className="w-3.5 h-3.5 text-cyan-500" /> ENCRIPTACIÓN 256B</div>
                 </div>
               </div>
