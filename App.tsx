@@ -1,13 +1,8 @@
-
 import React, { useState, useRef } from 'react';
 import { 
   Cpu, 
-  CloudLightning, 
   ShieldCheck,
-  MousePointer2,
   Database,
-  Globe,
-  ArrowRight,
   Info,
   Lock,
   Upload,
@@ -15,8 +10,8 @@ import {
   X,
   CheckCircle2
 } from 'lucide-react';
-import Hero from './components/Hero';
-import { TECH_DOCS } from './constants';
+import Hero from './components/Hero.tsx';
+import { TECH_DOCS } from './constants.tsx';
 
 const App: React.FC = () => {
   const [accessCode, setAccessCode] = useState('');
@@ -37,7 +32,6 @@ const App: React.FC = () => {
     if (!files) return;
 
     const remainingSlots = 4 - images.length;
-    // Fix: Cast Array.from(files) to File[] to avoid 'unknown' type errors when accessing file properties.
     const filesToProcess = (Array.from(files) as File[]).slice(0, remainingSlots);
 
     filesToProcess.forEach((file: File) => {
@@ -165,7 +159,7 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* 4. SECCIÓN REEMPLAZADA: ACCESO Y CARGA DE IMÁGENES */}
+        {/* 4. SECCIÓN ACCESO Y CARGA DE IMÁGENES */}
         <section className="bg-gradient-to-r from-slate-950 to-cyan-950/30 border-y border-slate-900 py-24 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {!isAuthorized ? (
