@@ -93,18 +93,17 @@ const Hero: React.FC = () => {
         </div>
         
         <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight max-w-4xl mx-auto">
-          De Azar a <span className="text-cyan-400">Ciencia de Datos</span>
+          Análisis de <span className="text-cyan-400">Convergencia Determinística</span>
         </h1>
         
         <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
-          Descubre el sistema avanzado que utiliza inteligencia artificial y procesamiento de matrices para detectar 
-          <span className="text-cyan-200 font-semibold"> patrones de inercia</span> y 
-          <span className="text-lime-400 font-semibold"> anomalías estadísticas</span>.
+          Motor de procesamiento avanzado basado en flujos de <span className="text-cyan-200 font-semibold">Inercia, Energía y Frecuencia</span>. 
+          Identificamos el punto exacto donde los indicadores lógicos coinciden.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a 
-            href="https://patrnlab.vercel.app"
+            href="https://numbers-software.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 text-slate-950 font-bold rounded-xl hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/30 text-sm"

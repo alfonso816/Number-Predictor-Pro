@@ -14,7 +14,21 @@ import {
   Layers,
   Search,
   LineChart,
-  Globe
+  Globe,
+  Thermometer,
+  ArrowUpRight,
+  ArrowDownRight,
+  Minus,
+  Table,
+  ClipboardList,
+  BarChart,
+  Bot,
+  EyeOff,
+  Flame,
+  PieChart,
+  ArrowLeftRight,
+  Gamepad2,
+  RefreshCw
 } from 'lucide-react';
 
 export const COLORS = {
@@ -88,6 +102,79 @@ export const TRADING_PATTERNS = [
       </svg>
     )
   }
+];
+
+export const SYSTEM_PHILOSOPHY = {
+  title: "Filosofía del Sistema",
+  subtitle: "Motor de Análisis de Convergencia Determinística",
+  desc: "El programa no es un simple generador de números aleatorios; se basa en la premisa de que los números siguen flujos de Inercia, Energía y Frecuencia. El objetivo es identificar el punto exacto donde múltiples indicadores lógicos coinciden (convergencia)."
+};
+
+export const INDICATORS = [
+  {
+    title: "Niveles de Energía",
+    subtitle: "ADN del Número",
+    icon: <Thermometer className="w-5 h-5" />,
+    items: [
+      { label: "L (Low)", color: "text-cyan-400", desc: "Ausencia 0-10. Inercia Activa." },
+      { label: "M (Medium)", color: "text-amber-400", desc: "Ausencia 11-30. Transición." },
+      { label: "A (Active)", color: "text-rose-500", desc: "Ausencia >30. Alta presión." }
+    ]
+  },
+  {
+    title: "Símbolos de Tendencia",
+    subtitle: "Modos N y CP",
+    icon: <TrendingUp className="w-5 h-5" />,
+    items: [
+      { label: "↑ Ascenso", color: "text-cyan-400", desc: "Valor mayor al anterior." },
+      { label: "↓ Descenso", color: "text-rose-500", desc: "Valor menor al anterior." },
+      { label: "◐ Estable", color: "text-slate-400", desc: "Repetición o inercia." }
+    ]
+  },
+  {
+    title: "CP (Change of Position)",
+    subtitle: "Ritmos de Salto",
+    icon: <Activity className="w-5 h-5" />,
+    items: [
+      { label: "Escala 0-9", color: "text-lime-400", desc: "Desplazamiento relativo circular." },
+      { label: "Aceleración", color: "text-lime-400", desc: "Cambio de posición vs anterior." }
+    ]
+  }
+];
+
+export const MAIN_MODULES = [
+  {
+    title: "Matriz Principal",
+    icon: <Table className="w-6 h-6 text-cyan-400" />,
+    desc: "Celdas inteligentes con resaltador multicapa y red de conexiones para identificar Pares Críticos."
+  },
+  {
+    title: "Registros de Convergencia",
+    icon: <ClipboardList className="w-6 h-6 text-lime-400" />,
+    desc: "Corazón analítico. Evalúa cada fila bajo 5 Pilares: Patrón N, Estructura, Red, CP y Contadores."
+  },
+  {
+    title: "Monitor de Frecuencias",
+    icon: <BarChart className="w-6 h-6 text-cyan-400" />,
+    desc: "Totales horizontales y Top Patrones de 4 dígitos más repetidos en el historial global."
+  },
+  {
+    title: "Predicciones Matrix v3",
+    icon: <Bot className="w-6 h-6 text-lime-400" />,
+    desc: "Motor de IA que genera 20 escenarios basados en inercia repetitiva y estructura de energía."
+  }
+];
+
+export const ADVANCED_VIEWS = [
+  { title: "Olvidados", icon: <EyeOff className="w-4 h-4" />, desc: "Rastreo de mayor ausencia por columna." },
+  { title: "Mapa de Calor", icon: <Flame className="w-4 h-4" />, desc: "Densidad de aparición para detectar saturación." },
+  { title: "Distribución", icon: <PieChart className="w-4 h-4" />, desc: "Análisis estadístico de dígitos 0-9 por columna." },
+  { title: "Correlación", icon: <ArrowLeftRight className="w-4 h-4" />, desc: "Comparación Día/Noche para números espejo." }
+];
+
+export const CONTROL_TOOLS = [
+  { title: "D-Pad", icon: <Gamepad2 className="w-5 h-5 text-cyan-400" />, desc: "Interfaz táctil para navegación y conexiones rápidas." },
+  { title: "Auto Sync", icon: <RefreshCw className="w-5 h-5 text-lime-400" />, desc: "Escaneo y carga de sorteos reales en tiempo real." }
 ];
 
 export const TECH_DOCS = {

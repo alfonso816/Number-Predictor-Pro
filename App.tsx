@@ -3,10 +3,26 @@ import React from 'react';
 import { 
   Info,
   Database,
-  TrendingUp
+  TrendingUp,
+  Activity,
+  Zap,
+  ShieldCheck,
+  Cpu,
+  Layout,
+  Layers,
+  Target,
+  ChevronRight
 } from 'lucide-react';
 import Hero from './components/Hero.tsx';
-import { TECH_DOCS, TRADING_PATTERNS } from './constants.tsx';
+import { 
+  TECH_DOCS, 
+  TRADING_PATTERNS, 
+  SYSTEM_PHILOSOPHY, 
+  INDICATORS, 
+  MAIN_MODULES, 
+  ADVANCED_VIEWS, 
+  CONTROL_TOOLS 
+} from './constants.tsx';
 
 const App: React.FC = () => {
   return (
@@ -14,66 +30,95 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Hero />
 
-        {/* 1. SECCIÓN DE FUNCIONAMIENTO: TENDENCIAS */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-900">
-          <div className="flex flex-col md:flex-row gap-12 items-start">
-            <div className="md:w-1/3 sticky top-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase mb-4">
-                <Info className="w-3.5 h-3.5" />
-                Módulo 01
+        {/* 1. FILOSOFÍA DEL SISTEMA */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-slate-900">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                Core Logic
               </div>
-              <h2 className="text-3xl font-black text-white mb-6">Funciones de <span className="text-cyan-400">Tendencia</span></h2>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                El corazón de Number Matrix Pro reside en su capacidad de procesar vectores de movimiento. No solo vemos números, vemos trayectorias.
+              <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
+                {SYSTEM_PHILOSOPHY.title}
+              </h2>
+              <h3 className="text-xl font-bold text-cyan-400 uppercase tracking-widest">
+                {SYSTEM_PHILOSOPHY.subtitle}
+              </h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                {SYSTEM_PHILOSOPHY.desc}
               </p>
-              <div className="p-4 bg-slate-900/50 rounded-2xl border border-slate-800">
-                <div className="text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-bold">Estado del Motor</div>
-                <div className="flex items-center gap-2 text-lime-400 font-mono text-sm">
-                  <div className="w-2 h-2 bg-lime-500 rounded-full animate-pulse" />
-                  PROCESANDO VECTORES N/CP
-                </div>
-              </div>
-            </div>
-            
-            <div className="md:w-2/3 grid gap-6">
-              {TECH_DOCS.tendencias.map((doc, idx) => (
-                <div key={idx} className="group p-8 rounded-3xl bg-slate-900/30 border border-slate-800 hover:border-cyan-500/30 transition-all hover:bg-slate-900/50">
-                  <div className="flex items-start gap-6">
-                    <div className="p-4 bg-slate-950 rounded-2xl border border-slate-800 group-hover:scale-110 transition-transform shadow-xl">
-                      {doc.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{doc.title}</h3>
-                      <p className="text-slate-400 leading-relaxed text-sm">{doc.desc}</p>
+              <div className="grid grid-cols-3 gap-4 pt-4">
+                {['Inercia', 'Energía', 'Frecuencia'].map((item) => (
+                  <div key={item} className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-center">
+                    <div className="text-white font-bold text-sm mb-1">{item}</div>
+                    <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-full bg-cyan-500 w-2/3" />
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-cyan-500/10 blur-3xl rounded-full" />
+              <div className="relative p-8 rounded-3xl bg-slate-900/40 border border-slate-800 backdrop-blur-sm">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="text-xs font-black text-slate-500 uppercase tracking-widest">Convergencia Determinística</div>
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 rounded-full bg-cyan-500" />
+                    <div className="w-2 h-2 rounded-full bg-lime-500" />
+                    <div className="w-2 h-2 rounded-full bg-slate-700" />
+                  </div>
                 </div>
-              ))}
+                <div className="space-y-6">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-slate-950 border border-slate-900">
+                      <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-cyan-400 font-mono">
+                        0{i}
+                      </div>
+                      <div className="flex-grow h-2 bg-slate-900 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-cyan-500 to-lime-500" style={{ width: `${30 * i}%` }} />
+                      </div>
+                      <div className="text-xs font-mono text-slate-500">SYNC_OK</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 2. SECCIÓN: ASESOR TÁCTICO (ESTRATEGIAS) */}
-        <section className="bg-slate-950/50 py-24 border-y border-slate-900 relative">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/5 via-transparent to-transparent pointer-events-none" />
+        {/* 2. INDICADORES CLAVE (ADN DEL NÚMERO) */}
+        <section className="bg-slate-950/50 py-24 border-y border-slate-900 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,_var(--tw-gradient-stops))] from-cyan-500/5 via-transparent to-transparent pointer-events-none" />
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Estrategias del <span className="text-lime-400 text-glow">Asesor Táctico</span></h2>
-              <p className="text-slate-500 max-w-2xl mx-auto">Algoritmos predictivos basados en inercia de posición y leyes de probabilidad acumulada.</p>
+            <div className="text-center mb-20">
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Indicadores Clave: <span className="text-lime-400">El ADN del Número</span></h2>
+              <p className="text-slate-500 max-w-2xl mx-auto">Métricas estructurales que definen el comportamiento de cada dígito en la matriz.</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {TECH_DOCS.estrategias.map((doc, idx) => (
-                <div key={idx} className="p-6 rounded-2xl bg-[#030e20] border border-slate-800 hover:border-lime-500/30 transition-all group backdrop-blur-md">
-                  <div className="flex gap-4 items-start">
-                    <div className="p-3 bg-lime-500/10 rounded-xl text-lime-400">
-                      {doc.icon}
+            <div className="grid md:grid-cols-3 gap-8">
+              {INDICATORS.map((indicator, idx) => (
+                <div key={idx} className="group p-8 rounded-3xl bg-[#030e20] border border-slate-800 hover:border-cyan-500/30 transition-all backdrop-blur-md">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 bg-slate-900 rounded-2xl text-cyan-400 group-hover:scale-110 transition-transform">
+                      {indicator.icon}
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-100 mb-2">{doc.title}</h4>
-                      <p className="text-slate-400 text-xs leading-relaxed">{doc.desc}</p>
+                      <h4 className="font-black text-white text-lg">{indicator.title}</h4>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">{indicator.subtitle}</div>
                     </div>
+                  </div>
+                  <div className="space-y-4">
+                    {indicator.items.map((item, iIdx) => (
+                      <div key={iIdx} className="p-4 rounded-2xl bg-slate-950/50 border border-slate-900/50 flex items-center justify-between hover:bg-slate-900/30 transition-colors">
+                        <div>
+                          <div className={`font-bold text-sm ${item.color}`}>{item.label}</div>
+                          <div className="text-[10px] text-slate-500">{item.desc}</div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-slate-700" />
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -81,40 +126,74 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* 3. SECCIÓN: INTERFAZ Y HERRAMIENTAS */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-b border-slate-900">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {TECH_DOCS.interfaz.map((doc, idx) => (
-                <div key={idx} className="p-5 rounded-2xl bg-slate-900/20 border border-slate-800/50 hover:bg-slate-900/40 transition-all">
-                  <div className="mb-3 text-cyan-400">{doc.icon}</div>
-                  <h5 className="font-bold text-white text-sm mb-2">{doc.title}</h5>
-                  <p className="text-slate-500 text-[10px] leading-normal">{doc.desc}</p>
+        {/* 3. FUNCIONES Y MÓDULOS PRINCIPALES */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="flex flex-col md:flex-row gap-12 items-start mb-16">
+            <div className="md:w-1/2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-500/10 border border-lime-500/20 text-lime-400 text-xs font-bold uppercase mb-4">
+                <Layout className="w-3.5 h-3.5" />
+                Módulos 02
+              </div>
+              <h2 className="text-4xl font-black text-white mb-6">Funciones y <span className="text-cyan-400">Módulos Principales</span></h2>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Herramientas integradas para el procesamiento de datos y la generación de escenarios predictivos de alta fidelidad.
+              </p>
+            </div>
+            <div className="md:w-1/2 grid grid-cols-2 gap-4">
+              {CONTROL_TOOLS.map((tool, idx) => (
+                <div key={idx} className="p-6 rounded-2xl bg-slate-900/20 border border-slate-800 flex flex-col items-center text-center group hover:bg-slate-900/40 transition-all">
+                  <div className="mb-4 p-3 bg-slate-950 rounded-xl group-hover:scale-110 transition-transform">
+                    {tool.icon}
+                  </div>
+                  <h5 className="font-bold text-white text-sm mb-1">{tool.title}</h5>
+                  <p className="text-slate-500 text-[10px] uppercase tracking-tighter">{tool.desc}</p>
                 </div>
               ))}
             </div>
-            
-            <div className="order-1 lg:order-2 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold uppercase">
-                Expert Tools
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-                Interfaz de <span className="text-cyan-400">Grado Profesional</span>
-              </h2>
-              <p className="text-slate-400 leading-relaxed text-sm">
-                Diseñado para analistas que requieren precisión técnica. Cada herramienta está optimizada para detectar patrones de inercia que otros ignoran.
-              </p>
-              <div className="flex items-center gap-6 pt-4">
-                <div className="flex flex-col">
-                  <span className="text-2xl font-bold text-white">5 Colores</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-tighter">Paleta Pincel ON</span>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {MAIN_MODULES.map((module, idx) => (
+              <div key={idx} className="p-8 rounded-3xl bg-slate-900/30 border border-slate-800 hover:border-lime-500/30 transition-all group">
+                <div className="mb-6 p-4 bg-slate-950 rounded-2xl border border-slate-800 w-fit group-hover:rotate-6 transition-transform">
+                  {module.icon}
                 </div>
-                <div className="w-px h-10 bg-slate-800" />
-                <div className="flex flex-col">
-                  <span className="text-2xl font-bold text-white">R-R4</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-tighter">Nodos de Bloque</span>
-                </div>
+                <h4 className="text-xl font-bold text-white mb-3">{module.title}</h4>
+                <p className="text-slate-400 text-sm leading-relaxed">{module.desc}</p>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. VISTAS DE ANÁLISIS AVANZADO */}
+        <section className="bg-slate-900/20 py-24 border-y border-slate-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-8 mb-16">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Vistas de <span className="text-cyan-400">Análisis Avanzado</span></h2>
+                <p className="text-slate-500">Perspectivas técnicas adicionales para detectar zonas de saturación y correlaciones espejo.</p>
+              </div>
+              <div className="flex gap-2">
+                {['Día', 'Noche'].map(mode => (
+                  <button key={mode} className="px-6 py-2 rounded-full border border-slate-800 text-xs font-bold text-slate-400 hover:bg-slate-800 transition-colors">
+                    MODO {mode.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {ADVANCED_VIEWS.map((view, idx) => (
+                <div key={idx} className="p-6 rounded-2xl bg-slate-950 border border-slate-900 hover:border-cyan-500/20 transition-all group">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-slate-900 rounded-lg text-cyan-400">
+                      {view.icon}
+                    </div>
+                    <h5 className="font-bold text-white">{view.title}</h5>
+                  </div>
+                  <p className="text-slate-500 text-xs leading-relaxed">{view.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -149,6 +228,23 @@ const App: React.FC = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* 5. EXPERT NOTE / PRO TIP */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          <div className="p-8 rounded-3xl bg-gradient-to-r from-cyan-500/10 to-lime-500/10 border border-cyan-500/20 backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="p-4 bg-cyan-500 rounded-2xl text-slate-950">
+                <Zap className="w-8 h-8 fill-current" />
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-white mb-2 uppercase tracking-tight">Uso Recomendado por Expertos</h4>
+                <p className="text-slate-400 leading-relaxed">
+                  Busca filas en los <span className="text-white font-bold">Registros de Convergencia</span> que tengan la menor cantidad de guiones (<span className="text-cyan-400 font-mono">-</span>). Esas filas representan los momentos de <span className="text-lime-400 font-bold">máxima estabilidad lógica</span> del sistema, donde todos los indicadores coinciden en una trayectoria única.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
